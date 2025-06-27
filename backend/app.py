@@ -5,7 +5,7 @@ import random
 app = Flask(__name__)
 CORS(app)
 
-# Simulation a real world situation
+# Simulating a real world situation
 # Generate the secret code at startup
 # 10 = the value of digits, k = the amount of digits
 SECRET_CODE = random.choices(range(10), k=10)
