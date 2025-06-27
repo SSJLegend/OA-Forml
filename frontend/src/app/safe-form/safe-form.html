@@ -1,0 +1,23 @@
+<mat-card appearance="outlined" class="center">
+   <h1>Crack the Safe 🔒</h1>
+<mat-card-content>
+    <div *ngFor="let slot of lock_slots; let i = index" class="slot-row" [ngClass]="{'correct': slot.correct}">
+        <button matButton (click)="increasing(i)" [disabled]="slot.correct">+</button> 
+        <h3>{{slot.value}}</h3>
+        <button matButton (click)="decreasing(i)" [disabled]="slot.correct">-</button>
+    </div>
+         <button matButton="filled" (click)="submitCode()">Submit</button>
+    <div style="margin-top: 20px;">
+        <button matButton (click)="restart()">Restart</button>
+    </div>
+     <div style="margin-top: 20px;">
+        <button matButton (click)="getAttempts()">History</button>
+    </div>
+    </mat-card-content>
+
+<mat-card-footer  style="margin-top: 20px;">
+<h4> Attempts: {{tries}}</h4>
+<h4> Time: {{elapsedTime}} </h4>
+</mat-card-footer>
+
+</mat-card>
