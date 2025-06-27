@@ -13,6 +13,8 @@ import { SafeService } from '../service/safe-service';
 export class SafeForm {
   constructor(private safeService: SafeService){}
 
+
+  //For each individual lock slots
    lock_slots = [
     {id: 1, value: 0, correct: false},
     {id: 2, value: 0, correct: false},
@@ -69,13 +71,13 @@ export class SafeForm {
   this.safeService.crackSafe(payload).subscribe({
     next: (res) => {
       console.log('Result:', res);
-      // Optionally assign to a result variable and show in UI
        this.tries++;
 
       this.lock_slots.forEach((slot, index)=>{
         slot.correct = res.correct_position[index];
       });
     
+      //Posts to history to the backend
       this.attemptHistory.push({
         code: res.correct_code,
         correct_position: res.correct_position,
@@ -111,10 +113,10 @@ export class SafeForm {
     });
   }
 
-
+//Restart function
+//Resets everything to default values
  restart(){
-
-       this.safeService.resetLock().subscribe({
+      this.safeService.resetLock().subscribe({
       next:(res) =>{
         console.log('Lock reset:', res);
         this.lock_slots = [
@@ -143,7 +145,7 @@ export class SafeForm {
   }
 
 
-//Timer
+//Timer to keep track how long
 startTimer(){
   this.elapsedTime = 0;
   this.timer = setInterval(() =>{

@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Simulation a real world situation
-# Generate the secret code ONCE at startup
+# Generate the secret code at startup
 # 10 = the value of digits, k = the amount of digits
 SECRET_CODE = random.choices(range(10), k=10)
 attempts = [] #In-memory storage
@@ -24,6 +24,7 @@ def add_attempt():
     correct_position= [guess[i] == SECRET_CODE[i] for i in range(10)] #Checks if the digits are correct
     success = guess == SECRET_CODE
 
+    # Attempts logging
     entry = {
         'attempts': len(attempts) + 1,
         'code': code,
