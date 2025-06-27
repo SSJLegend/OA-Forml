@@ -39,7 +39,7 @@ export class SafeForm {
 
  
 
-  //Adding and subtracting
+  //Incrementing and decrementing
   increasing(id: number){
     this.lock_slots[id].value = (this.lock_slots[id].value + 1) % 10;
   }
